@@ -1,13 +1,10 @@
 <template>
   <div class="treatment-generator">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="title-icon">
-        <path d="M19 2H5C3.9 2 3 2.9 3 4V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V4C21 2.9 20.1 2 19 2ZM19 20H5V4H7V11L9.5 9.5L12 11V4H19V20Z"/>
-    </svg>
-    <h2>Plot Treatment Generator</h2>
+    <h2>MD's Story Generator</h2>
 
     <div class="input-section">
-      <label for="plot-input">Enter your plot summary:</label>
-      <textarea id="plot-input" v-model="plotInput" rows="10" placeholder="Paste or type your plot summary here..."></textarea>
+      <label for="plot-input">Enter Your Story Idea:</label>
+      <textarea id="plot-input" v-model="plotInput" rows="8" placeholder="Describe your concept, characters, or key plot points here..."></textarea>
     </div>
 
     <div class="button-group">
@@ -111,27 +108,25 @@ const clearFields = () => {
 
 <style scoped>
 .treatment-generator {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  font-family: sans-serif;
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-.title-icon {
-    display: block;
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 1rem;
-    fill: #007bff;
+.treatment-generator:hover {
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 
 h2 {
   text-align: center;
-  color: #333;
-  margin-bottom: 1.5rem;
+  color: #343a40;
+  margin-bottom: 2rem;
+  font-weight: 600;
 }
 
 .input-section {
@@ -147,12 +142,20 @@ label {
 
 textarea {
   width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
   font-size: 1rem;
   box-sizing: border-box;
   resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .button-group {
@@ -163,14 +166,15 @@ textarea {
 
 button {
   flex: 1;
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 1.2rem;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-weight: 500;
 }
 
 .clear-button {
@@ -183,11 +187,15 @@ button {
 
 button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0px);
 }
 
 button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  background-color: #adb5bd;
 }
 
 .loading-indicator {
@@ -202,7 +210,7 @@ button:disabled {
   color: #721c24;
   border: 1px solid #f5c6cb;
   padding: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -211,13 +219,13 @@ button:disabled {
   margin-top: 2rem;
   padding: 1.5rem;
   background-color: #f9f9f9;
-  border: 1px solid #eee;
-  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
 }
 
 .output-section h3 {
   margin-top: 0;
-  color: #333;
+  color: #495057;
   margin-bottom: 1rem;
 }
 
@@ -226,10 +234,11 @@ pre {
   word-wrap: break-word;
   background-color: #fff;
   padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: monospace;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  font-family: 'Consolas', 'Monaco', monospace;
   font-size: 0.95rem;
-  color: #444;
+  color: #212529;
+  line-height: 1.6;
 }
 </style> 
