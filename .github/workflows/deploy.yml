@@ -36,13 +36,10 @@ jobs:
           cache: 'npm' # Cache npm dependencies
       - name: Install Dependencies
         run: npm install
+      - name: Create .env.production file
+        run: echo "VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}" > .env.production
       - name: Build
         run: npm run build
-        env:
-          NODE_ENV: production # Explicitly set NODE_ENV
-          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }} # Attempt using secrets
-        # The base path is handled by vite.config.ts
-        # The API URL is handled by .env.production
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
