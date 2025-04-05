@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
+// Enabled Github 
 // Define the GitHub repository name
 const repoName = 'story-maker-frontend';
 
