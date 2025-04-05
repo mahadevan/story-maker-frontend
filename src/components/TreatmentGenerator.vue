@@ -40,6 +40,10 @@ const generatedTreatment = ref('');
 const isLoading = ref(false);
 const errorMessage = ref('');
 
+// Access the environment variable for the API base URL
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+const generateTreatmentEndpoint = `${apiBaseUrl}/generate-treatment`;
+
 const generateTreatment = async () => {
   // Clear previous results and errors
   generatedTreatment.value = '';
@@ -54,11 +58,8 @@ const generateTreatment = async () => {
   }
 
   try {
-    // TODO: Implement API call to backend
-    // console.log('Sending plot:', plotInput.value); // Remove this line
-
-    // Implement the actual API call
-    const response = await fetch('http://localhost:8000/generate-treatment', {
+    // Use the environment variable in the fetch call
+    const response = await fetch(generateTreatmentEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ plot: plotInput.value })
