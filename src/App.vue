@@ -21,7 +21,7 @@ import TreatmentGenerator from './components/TreatmentGenerator.vue'; // Import 
     <TreatmentGenerator /> <!-- Use our component -->
   </main>
   <footer>
-    Created by MD
+    MD സൃഷ്ടിച്ചത്
   </footer>
 </template>
 

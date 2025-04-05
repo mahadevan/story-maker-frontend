@@ -1,29 +1,29 @@
 <template>
   <div class="treatment-generator">
-    <h2>MD's Story Generator</h2>
+    <h2>MDയുടെ കഥാ ജനറേറ്റർ</h2>
 
     <div class="input-section">
-      <label for="plot-input">Enter Your Story Idea:</label>
-      <textarea id="plot-input" v-model="plotInput" rows="8" placeholder="Describe your concept, characters, or key plot points here..."></textarea>
+      <label for="plot-input">നിങ്ങളുടെ കഥാ ആശയം നൽകുക:</label>
+      <textarea id="plot-input" v-model="plotInput" rows="8" placeholder="നിങ്ങളുടെ ആശയം, കഥാപാത്രങ്ങൾ, അല്ലെങ്കിൽ പ്രധാന കാര്യങ്ങൾ ഇവിടെ വിവരിക്കുക..."></textarea>
     </div>
 
     <div class="button-group">
       <button @click="generateTreatment" :disabled="isLoading">
-        {{ isLoading ? 'Creating...' : 'Create Story' }}
+        {{ isLoading ? 'സൃഷ്ടിക്കുന്നു...' : 'കഥ സൃഷ്‌ടിക്കുക' }}
       </button>
-      <button @click="clearFields" class="clear-button" :disabled="isLoading">Clear</button>
+      <button @click="clearFields" class="clear-button" :disabled="isLoading">മായ്ക്കുക</button>
     </div>
 
     <div v-if="isLoading" class="loading-indicator">
-      Creating Story...
+      കഥ സൃഷ്ടിക്കുന്നു...
     </div>
 
     <div v-if="errorMessage" class="error-message">
-      Error: {{ errorMessage }}
+      പിശക്: {{ errorMessage }}
     </div>
 
     <div v-if="generatedTreatment" class="output-section">
-      <h3>Generated Treatment:</h3>
+      <h3>സൃഷ്ടിച്ച ട്രീറ്റ്മെന്റ്:</h3>
       <pre>{{ generatedTreatment }}</pre>
     </div>
   </div>
@@ -45,7 +45,7 @@ const generateTreatment = async () => {
 
   // Basic validation
   if (!plotInput.value.trim()) {
-    errorMessage.value = 'Plot summary cannot be empty.';
+    errorMessage.value = 'കഥാ സംഗ്രഹം ശൂന്യമായിരിക്കരുത്.';
     isLoading.value = false;
     return;
   }
@@ -75,7 +75,7 @@ const generateTreatment = async () => {
       } catch (e) {
           // Ignore if response is not JSON or other parsing error
       }
-      throw new Error(errorMsg);
+      throw new Error(`ട്രീറ്റ്മെന്റ് ജനറേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു (Status: ${response.status}): ${errorMsg}`);
     }
 
     const data = await response.json();
@@ -90,9 +90,9 @@ const generateTreatment = async () => {
   } catch (error) {
     console.error('Error generating treatment:', error);
     if (error instanceof Error) {
-      errorMessage.value = `Failed to generate treatment: ${error.message}`;
+      errorMessage.value = error.message;
     } else {
-      errorMessage.value = 'An unknown error occurred.';
+      errorMessage.value = 'അജ്ഞാതമായ ഒരു പിശക് സംഭവിച്ചു.';
     }
   } finally {
     isLoading.value = false;
