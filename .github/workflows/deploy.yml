@@ -36,8 +36,6 @@ jobs:
           cache: 'npm' # Cache npm dependencies
       - name: Install Dependencies
         run: npm install
-      - name: Verify .env.production
-        run: echo "Checking .env.production:" && cat .env.production
       - name: Build
         run: npm run build
         env:
