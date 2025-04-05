@@ -40,10 +40,6 @@ const generatedTreatment = ref('');
 const isLoading = ref(false);
 const errorMessage = ref('');
 
-// Access the environment variable for the API base URL
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-const generateTreatmentEndpoint = `${apiBaseUrl}/generate-treatment`;
-
 const generateTreatment = async () => {
   // Clear previous results and errors
   generatedTreatment.value = '';
@@ -58,8 +54,16 @@ const generateTreatment = async () => {
   }
 
   try {
-    // Use the environment variable in the fetch call
-    const response = await fetch(generateTreatmentEndpoint, {
+    // Construct the full endpoint URL inside the function
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+    if (!apiBaseUrl) {
+      // Add a check in case the env variable is missing
+      throw new Error("API base URL is not configured.");
+    }
+    const endpointUrl = `${apiBaseUrl}/generate-treatment`;
+
+    // Use the dynamically constructed endpoint URL in the fetch call
+    const response = await fetch(endpointUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ plot: plotInput.value })
