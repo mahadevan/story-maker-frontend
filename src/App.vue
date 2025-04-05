@@ -17,7 +17,12 @@ import TreatmentGenerator from './components/TreatmentGenerator.vue'; // Import 
   </div>
   <HelloWorld msg="Vite + Vue" />
   -->
-  <TreatmentGenerator /> <!-- Use our component -->
+  <main>
+    <TreatmentGenerator /> <!-- Use our component -->
+  </main>
+  <footer>
+    Created by MD
+  </footer>
 </template>
 
 <style scoped>
@@ -40,5 +45,22 @@ import TreatmentGenerator from './components/TreatmentGenerator.vue'; // Import 
 /* Add some basic global styles if needed, or leave empty */
 main {
   padding: 1rem;
+  flex: 1; /* Allow main content to grow */
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem; /* Add space above footer */
+  color: #6c757d; /* Grey color */
+  font-size: 0.9rem;
+}
+
+/* Optional: Make App.vue use flex to push footer down if content is short */
+/* You might need to apply this to a parent div if #app isn't the direct parent */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 </style>
