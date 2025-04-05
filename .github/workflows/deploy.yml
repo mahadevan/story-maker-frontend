@@ -36,8 +36,13 @@ jobs:
           cache: 'npm' # Cache npm dependencies
       - name: Install Dependencies
         run: npm install
+      - name: Verify .env.production
+        run: echo "Checking .env.production:" && cat .env.production
       - name: Build
-        run: npm run build # This will use .env.production because NODE_ENV=production is set by default in Actions build steps
+        run: npm run build
+        env:
+          NODE_ENV: production # Explicitly set NODE_ENV
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }} # Attempt using secrets
         # The base path is handled by vite.config.ts
         # The API URL is handled by .env.production
       - name: Upload artifact
